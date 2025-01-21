@@ -4,7 +4,7 @@ CC				=		cc
 AR				=		ar rcs
 RM				=		rm -rf
 CFLAGS			=		-Wall -Wextra -Werror -Ofast
-SRC				=		utils
+SRC				=		utils parse
 SRC_FILES		=		$(addprefix src/, $(addsuffix .c, $(SRC)))
 SRC_MAIN		=		src/main.c	$(SRC_FILES)
 SRC_TEST		=		tests/test.c	$(SRC_FILES)
@@ -19,7 +19,7 @@ $(NAME) : $(OBJ)
 	@echo "----- Compiling ft_ping -----"
 	# ${CC} ${SRC_MAIN} -o ${NAME}  ${LIBFT_LIB} ${GNL_LIB} ${CFLAGS}
 	${CC} ${SRC_MAIN} -o ${NAME}  ${LIBFT_LIB} ${GNL_LIB}
-	clear
+	# clear
 	@echo "$(RED)╔═════════════════════════════════════════════════════════════════════════════╗$(RESET)"
 	@echo "$(RED)║$(GREEN)                             ft_ping Compiled!                             $(RED)║$(RESET)"
 	@echo "$(RED)╚═════════════════════════════════════════════════════════════════════════════╝$(RESET)"
