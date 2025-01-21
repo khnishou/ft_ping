@@ -1,0 +1,4 @@
+.vscode/settings.json
+obj/*
+test
+ft_ping
