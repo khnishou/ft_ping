@@ -3,12 +3,12 @@
 
 
 
-static bool is_opt(char const *arg)
+bool is_opt(char const *arg)
 {	
 	return ((arg && arg[0] && arg[0] == '-'));
 }
 
-static int get_opt(uint8_t *opt, char const *arg)
+int get_opt(uint8_t *opt, char const *arg)
 {	
 	int it;
 
@@ -49,5 +49,6 @@ bool parser(t_data *data, int argc, char const **argv)
 			}
 		}	
 	}
+	// data->opt = flag;
 	return (false);
 }

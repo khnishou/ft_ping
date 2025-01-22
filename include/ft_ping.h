@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
-
+#include <string.h>
 
 #define FLAG_V		(1 << 0)
 #define FLAG_H		(1 << 1)
@@ -23,9 +23,11 @@
 // ./ft_ping	[opt]	<destination>
 typedef struct s_data
 {
-	int		opt;
-	char	*dest;
+	uint8_t		opt;
+	char		*dest;
 }	t_data;
 
-void print_test(char* input);
+// parser
+bool is_opt(char const *arg);
+int get_opt(uint8_t *opt, char const *arg);
 bool parser(t_data *data, int argc, char const **argv);
