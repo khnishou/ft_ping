@@ -7,7 +7,7 @@ CFLAGS			=		-Wall -Wextra -Werror -Ofast
 SRC				=		utils parse
 SRC_FILES		=		$(addprefix src/, $(addsuffix .c, $(SRC)))
 SRC_MAIN		=		src/main.c	$(SRC_FILES)
-SRC_TEST		=		tests/test.c	$(SRC_FILES)
+SRC_TEST		=		$(wildcard CUnit/*/*.c) $(wildcard CUnit/*.c)	$(SRC_FILES)
 OBJ				=		$(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 OBJ_DIR			=		obj
 
