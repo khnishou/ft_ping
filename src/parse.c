@@ -13,6 +13,10 @@ int get_opt(uint8_t *opt, char const *arg)
 	int it;
 
 	it = 0;
+	if (!is_opt(arg))
+		return (-3);
+	if (!arg[1])
+		return (0);
 	while (++it && arg && arg[it])
 	{
 		if (arg[it] == 'v')
