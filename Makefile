@@ -7,7 +7,8 @@ CFLAGS			=		-Wall -Wextra -Werror -Ofast
 SRC				=		utils parse
 SRC_FILES		=		$(addprefix src/, $(addsuffix .c, $(SRC)))
 SRC_MAIN		=		src/main.c	$(SRC_FILES)
-SRC_TEST		=		$(wildcard CUnit/*/*.c) $(wildcard CUnit/*.c)	$(SRC_FILES)
+SRC_CUNIT		=		$(wildcard CUnit/*.c)
+SRC_TEST		=		$(wildcard tests/*.c) $(SRC_FILES) $(SRC_CUNIT)
 OBJ				=		$(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 OBJ_DIR			=		obj
 
@@ -17,9 +18,9 @@ RESET = \033[0m
 
 $(NAME) : $(OBJ)
 	@echo "----- Compiling ft_ping -----"
-	# ${CC} ${SRC_MAIN} -o ${NAME}  ${LIBFT_LIB} ${GNL_LIB} ${CFLAGS}
-	${CC} ${SRC_MAIN} -o ${NAME}  ${LIBFT_LIB} ${GNL_LIB}
-	# clear
+	@# ${CC} ${SRC_MAIN} -o ${NAME}  ${LIBFT_LIB} ${GNL_LIB} ${CFLAGS}
+	@${CC} ${SRC_MAIN} -o ${NAME}  ${LIBFT_LIB} ${GNL_LIB}
+	@# clear
 	@echo "$(RED)╔═════════════════════════════════════════════════════════════════════════════╗$(RESET)"
 	@echo "$(RED)║$(GREEN)                             ft_ping Compiled!                             $(RED)║$(RESET)"
 	@echo "$(RED)╚═════════════════════════════════════════════════════════════════════════════╝$(RESET)"
@@ -43,15 +44,15 @@ re: fclean all
 
 test: $(OBJ)
 	@echo "----- Compiling Test ft_ping -----"
-	@time -p (	${CC} ${SRC_TEST} -o ${NAME_TEST} ${CFLAGS} )
-	clear
+	@${CC} ${SRC_TEST} -o ${NAME_TEST}
+	@# @time -p (	${CC} ${SRC_TEST} -o ${NAME_TEST} ${CFLAGS} )
+	@# clear
 	@echo "$(RED)╔════════════════════════════════════════════════════════════════════════════════╗$(RESET)"
 	@echo "$(RED)║$(GREEN)                           Compiling and Running Test ...                       $(RED)║$(RESET)"
 	@echo "$(RED)╚════════════════════════════════════════════════════════════════════════════════╝$(RESET)"
 	@echo
 	@echo
 	@./test
-	@echo
 
 valgrind :
 	@valgrind --leak-check=full --show-leak-kinds=all \
