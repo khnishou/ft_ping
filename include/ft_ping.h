@@ -15,6 +15,9 @@
 #include <stdint.h>
 #include <string.h>
 
+#include <netdb.h>
+#include <arpa/inet.h>
+
 #define FLAG_V		(1 << 0)
 #define FLAG_H		(1 << 1)
 // #define FLAG_ERR	(1 << 2)
@@ -30,3 +33,6 @@ typedef struct s_data
 bool is_opt(char const *arg);
 int get_opt(uint8_t *opt, char const *arg);
 bool parser(t_data *data, int argc, char const **argv);
+
+bool is_dest(const char *arg, struct addrinfo **res);
+int get_dest(const char *arg);

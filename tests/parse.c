@@ -63,3 +63,21 @@ void is_opt_test(void)
 
     results(count);
 }
+
+void is_dest_test(void)
+{
+    uint32_t count;
+	struct addrinfo *res;
+
+    dprintf(1, ORANGE"~~~~~~~~~~~~~~~~~~~~~~~~~~~ is_dest TESTS ~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"DEFAULT);
+    count = 0;
+    //			TEST_CASE		RECEIVED						EXPECTED
+    count += try("NULL", NULL,		    set_bool(is_dest(NULL, &res)),			set_bool(false));
+    count += try("", NULL,		        set_bool(is_dest("", &res)),			set_bool(false));
+    count += try("google.com", NULL,    set_bool(is_dest("google.com", &res)),	set_bool(true));
+    count += try("8.8.8.8", NULL,		set_bool(is_dest("8.8.8.8", &res)),	    set_bool(true));
+    count += try("random", NULL,		set_bool(is_dest("random", &res)),	    set_bool(false));
+    
+
+    results(count);
+}
