@@ -11,25 +11,25 @@ void get_opt_test(void)
         "random",   "",             "-random",  "- random",     "--random",
         "-v",       "-?",           "-",        "-v?",          "-v -?",
         "-v-?",     "-vvvvvvvv",    "-v v",     "-v -v",        "-vvrandomvv",
-        "-vv??vvv?v"
+        "-vv??vvv?v",   NULL
     };
     int expected_results[] = {
         -3,         -3,             1,          1,              1,
-        -1,         -1,             0,         -1,              2,
-        2,          -1,             2 ,         2,              3,
-        -1
+        -1,         -1,             -3,        -1,              2,
+        2,          -1,             2,          2,              3,
+        -1,         -3
     };
     bool expected_Vflag[] = {
         0,          0,              0,          0,              0,
         1,          0,              0,          1,              1,
         1,          1,              1,          1,              1,
-        1
+        1,          0
     };
     bool expected_Hflag[] = {
         0,          0,              0,          0,              0,
         0,          1,              0,          1,              0,
         0,          0,              0,          0,              0,
-        1
+        1,          0
     };
     int num_tests = sizeof(test_cases) / sizeof(test_cases[0]);
     
@@ -58,7 +58,7 @@ void is_opt_test(void)
     count += try("NULL", NULL,		set_bool(is_opt(NULL)),			set_bool(false));
     count += try("<>", NULL,		set_bool(is_opt("")),			set_bool(false));
     count += try("<random>", NULL,	set_bool(is_opt("random")),		set_bool(false));
-    count += try("<->", NULL,	    set_bool(is_opt("-")),	        set_bool(true));
+    count += try("<->", NULL,	    set_bool(is_opt("-")),	        set_bool(false));
     count += try("<-random>", NULL,	set_bool(is_opt("-random")),	set_bool(true));
 
     results(count);

@@ -5,7 +5,7 @@
 
 bool is_opt(char const *arg)
 {	
-	return ((arg && arg[0] && arg[0] == '-'));
+	return ((arg && arg[0] && arg[0] == '-' && arg[1]));
 }
 
 int get_opt(uint8_t *opt, char const *arg)
@@ -42,13 +42,14 @@ bool parser(t_data *data, int argc, char const **argv)
 	{
 		jt = -1;
 		if (!is_opt(argv[it]))
-			dprintf(2, RED"<%s>\n", argv[it]); // check create a function that add the string into a lst or hanle it by itself
+			dprintf(2, "<%s> [%d]\n", argv[it], test); // check create a function that add the string into a lst or hanle it by itself
+		}
 		else
 		{
 			jt = get_opt(&flag, argv[it]);
 			if (jt != -1)
 			{
-				dprintf(2, ORANGE"\nping: invalid option -- '%c'\n"DEFAULT, argv[it][jt]); // check create an error handler at the specific [it][ij] 
+				dprintf(2, "\nping: invalid option -- '%c'\n", argv[it][jt]); // check create an error handler at the specific [it][ij] 
 				return (true);
 			}
 		}	
